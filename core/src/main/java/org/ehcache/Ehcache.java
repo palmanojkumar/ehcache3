@@ -1523,11 +1523,6 @@ public class Ehcache<K, V> implements Cache<K, V>, UserManagedCache<K, V>, Persi
     public void setCapacityConstraint(Comparable<Long> constraint) {
       throw new UnsupportedOperationException("implement me!"); // XXX:
     }
-
-    @Override
-    public void releaseAllEventListeners() {
-      eventNotificationService.releaseAllListeners();
-    }
     
     private <T> Collection<T> copy(Collection<T> collection) {
       if (collection == null) {

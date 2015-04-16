@@ -34,7 +34,6 @@ import static org.junit.Assert.assertThat;
 
 import org.ehcache.event.CacheEvent;
 import org.ehcache.event.CacheEventListener;
-import org.ehcache.event.CacheEventListenerFactory;
 import org.ehcache.event.EventFiring;
 import org.ehcache.event.EventOrdering;
 import org.ehcache.event.EventType;
@@ -101,9 +100,6 @@ public class EhcacheEventTest {
     cache.getRuntimeConfiguration().deregisterCacheEventListener(listener);
     verify(eventNotifier).deregisterCacheEventListener(listener);
     verify(eventNotifier).hasListeners();
-    
-    cache.getRuntimeConfiguration().releaseAllEventListeners();
-    verify(eventNotifier).releaseAllListeners();
   }
   
   @Test
