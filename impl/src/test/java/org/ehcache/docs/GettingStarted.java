@@ -30,6 +30,8 @@ import org.ehcache.config.ResourcePoolsBuilder;
 import org.ehcache.config.ResourceType;
 import org.ehcache.config.SerializerConfiguration;
 import org.ehcache.config.event.CacheEventListenerConfigurationBuilder;
+import org.ehcache.config.executor.EhcacheExecutorProviderConfigBuilder;
+import org.ehcache.config.executor.ThreadPoolConfigBuilder;
 import org.ehcache.config.loaderwriter.DefaultCacheLoaderWriterConfiguration;
 import org.ehcache.config.persistence.PersistenceConfiguration;
 import org.ehcache.config.serializer.DefaultSerializerConfiguration;
@@ -41,9 +43,11 @@ import org.ehcache.event.CacheEvent;
 import org.ehcache.event.CacheEventListener;
 import org.ehcache.event.EventType;
 import org.ehcache.exceptions.BulkCacheWritingException;
+import org.ehcache.internal.executor.AppEngineThreadFactoryProvider;
 import org.ehcache.internal.store.heap.service.OnHeapStoreServiceConfiguration;
 import org.ehcache.spi.loaderwriter.CacheLoaderWriter;
 import org.ehcache.spi.serialization.Serializer;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,6 +75,38 @@ import static org.junit.Assert.assertThat;
 @SuppressWarnings("unused")
 public class GettingStarted {
 
+  @Ignore
+  public void ehcacheExecutorProviderSourcingThreadFromJEE() {
+    CacheManager cacheManager = CacheManagerBuilder.newCacheManagerBuilder()
+                                                  .using(EhcacheExecutorProviderConfigBuilder.newEhcacheExecutorProviderconfigBuilder()
+                                                                                             .threadFactoryProvider(AppEngineThreadFactoryProvider.class)
+                                                                                             .build()) 
+                                                   
+                                                  .withCache("test", CacheConfigurationBuilder.newCacheConfigurationBuilder().buildConfig(Long.class, String.class))
+                                                  .build(false);
+    cacheManager.init(); 
+    Cache<Long, String> preConfigured = cacheManager.getCache("test", Long.class, String.class);
+    cacheManager.removeCache("test"); 
+    cacheManager.close(); 
+  }
+
+  
+  @Ignore
+  public void configureSharedThreadPool() {
+    CacheManager cacheManager = CacheManagerBuilder.newCacheManagerBuilder()
+                                                  .using(EhcacheExecutorProviderConfigBuilder.newEhcacheExecutorProviderconfigBuilder()
+                                                                                             .globalSharedCachedThreadPoolConfig(ThreadPoolConfigBuilder.newThreadPoolConfigBuilder().corePoolSize(3).maximumThreads(10).build())
+                                                                                             .globalSharedScheduledThreadPoolCoreSize(3)
+                                                                                             .build())
+                                                   
+                                                   .withCache("test", CacheConfigurationBuilder.newCacheConfigurationBuilder().buildConfig(Long.class, String.class))
+                                                   .build(false);
+    cacheManager.init(); 
+    Cache<Long, String> preConfigured = cacheManager.getCache("test", Long.class, String.class);
+    cacheManager.removeCache("test"); 
+    cacheManager.close(); 
+  }
+ 
   @Test
   public void cachemanagerExample() {
     // tag::cachemanagerExample[]
