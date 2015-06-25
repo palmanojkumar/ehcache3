@@ -24,10 +24,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 import org.ehcache.spi.service.Service;
 
 /**
- * <p>
- * {@link EhcacheExecutorProvider} uses {@link ThreadFactoryProvider} to source platform specific {@link ThreadFactory} which is used to create
- * {@link ThreadPoolExecutor}.
- * </p>
  * 
  * Provides different types of shared or exclusive {@link ExecutorService} to submit {@link Runnable} or {@link Callable} task.
  * 
