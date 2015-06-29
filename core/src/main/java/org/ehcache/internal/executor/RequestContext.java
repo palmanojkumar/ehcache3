@@ -23,11 +23,17 @@ package org.ehcache.internal.executor;
 public interface RequestContext {
 
  /*String getCacheName();*/
-  
+ 
+ /*
+  * Not sure if String is the right type here...
+  */
  String getComponentId();
  
  TaskPriority getTaskPriority();
 
+ /*
+  * Priority really seems like something the binding agent should be defining.
+  */
   static enum TaskPriority {
     HIGH, NORMAL;
   }

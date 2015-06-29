@@ -18,6 +18,7 @@ package org.ehcache.internal.executor;
 /**
  * @author palmanojkumar
  *
+ * This is codifying the constraint possibilities.
  */
 public enum ExecutorServiceType {
   SINGLE_THREAD_EXECUTOR_SERVICE, CACHED_THREAD_POOL;//, SCHEDULED_EXECUTOR_SERVICE;
