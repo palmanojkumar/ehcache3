@@ -72,6 +72,4 @@ public class PoolConfig {
   public void setQueue(BlockingQueue<Runnable> queue) {
     this.queue = queue;
   }
-  
-  
 }

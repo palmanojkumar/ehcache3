@@ -16,6 +16,18 @@
 
 package org.ehcache.docs;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 import org.ehcache.Cache;
 import org.ehcache.CacheManager;
 import org.ehcache.CacheManagerBuilder;
@@ -34,8 +46,8 @@ import org.ehcache.config.executor.EhcacheExecutorProviderConfigBuilder;
 import org.ehcache.config.executor.ThreadPoolConfigBuilder;
 import org.ehcache.config.loaderwriter.DefaultCacheLoaderWriterConfiguration;
 import org.ehcache.config.persistence.PersistenceConfiguration;
-import org.ehcache.config.serializer.DefaultSerializerConfiguration;
 import org.ehcache.config.serializer.DefaultSerializationProviderConfiguration;
+import org.ehcache.config.serializer.DefaultSerializerConfiguration;
 import org.ehcache.config.units.EntryUnit;
 import org.ehcache.config.units.MemoryUnit;
 import org.ehcache.config.writebehind.WriteBehindConfigurationBuilder;
@@ -43,7 +55,6 @@ import org.ehcache.event.CacheEvent;
 import org.ehcache.event.CacheEventListener;
 import org.ehcache.event.EventType;
 import org.ehcache.exceptions.BulkCacheWritingException;
-import org.ehcache.internal.executor.AppEngineThreadFactoryProvider;
 import org.ehcache.internal.store.heap.service.OnHeapStoreServiceConfiguration;
 import org.ehcache.spi.loaderwriter.CacheLoaderWriter;
 import org.ehcache.spi.serialization.Serializer;
@@ -51,19 +62,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 
 /**
  * Samples to get started with Ehcache 3
@@ -75,7 +73,7 @@ import static org.junit.Assert.assertThat;
 @SuppressWarnings("unused")
 public class GettingStarted {
 
-  @Ignore
+/*  @Ignore
   public void ehcacheExecutorProviderSourcingThreadFromJEE() {
     CacheManager cacheManager = CacheManagerBuilder.newCacheManagerBuilder()
                                                   .using(EhcacheExecutorProviderConfigBuilder.newEhcacheExecutorProviderconfigBuilder()
@@ -106,7 +104,7 @@ public class GettingStarted {
     cacheManager.removeCache("test"); 
     cacheManager.close(); 
   }
- 
+*/ 
   @Test
   public void cachemanagerExample() {
     // tag::cachemanagerExample[]

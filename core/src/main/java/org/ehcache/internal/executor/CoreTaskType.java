@@ -2,5 +2,5 @@ package org.ehcache.internal.executor;
 
 public enum CoreTaskType implements TaskType {
 
-  WRITE_BEHIND, DISK_WRITE, BOOTSTRAP;//few more...
+  EVENT_NOTIFICATION, WRITE_BEHIND, DISK_WRITE, STATISTICAL, BOOTSTRAP;
 }

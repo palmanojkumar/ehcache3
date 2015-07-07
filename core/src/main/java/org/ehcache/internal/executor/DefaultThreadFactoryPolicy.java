@@ -13,13 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.ehcache.internal.executor;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+
 /**
+ * Default implementation of {@link ThreadFactoryPolicy} used in system
+ * 
  * @author palmanojkumar
  *
  */
-public interface EhcacheManagedTask {
+public class DefaultThreadFactoryPolicy implements ThreadFactoryPolicy {
 
-  TaskListener getTaskListener();
+  @Override
+  public ThreadFactory createThreadFactory() {
+    return Executors.defaultThreadFactory();
+  }
+
 }

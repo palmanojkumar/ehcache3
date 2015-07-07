@@ -24,10 +24,10 @@ import java.util.concurrent.ThreadFactory;
  * @author palmanojkumar
  *
  */
-public class AppEngineThreadFactoryProvider implements ThreadFactoryProvider {
+public class AppEngineThreadFactoryPolicy implements ThreadFactoryPolicy {
 
   @Override
-  public ThreadFactory newThreadFactory() {
+  public ThreadFactory createThreadFactory() {
     try {
       //code from google app engine documentation...
       return (ThreadFactory) Class.forName("com.google.appengine.api.ThreadManager").getMethod("currentRequestThreadFactory").invoke(null);

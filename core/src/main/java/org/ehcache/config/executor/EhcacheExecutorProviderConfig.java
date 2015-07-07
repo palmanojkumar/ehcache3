@@ -15,17 +15,13 @@
  */
 package org.ehcache.config.executor;
 
+import java.util.Collection;
+
+import org.ehcache.internal.executor.EhcacheExecutorPolicy;
 import org.ehcache.internal.executor.EhcacheExecutorProvider;
-import org.ehcache.internal.executor.ThreadFactoryProvider;
 import org.ehcache.spi.service.ServiceConfiguration;
 
 public interface EhcacheExecutorProviderConfig extends ServiceConfiguration<EhcacheExecutorProvider> {
 
-  ThreadPoolConfig getSharedCachedThreadPoolConfig();
-
-  int getSharedScheduledThreadPoolCoreSize();
-
-  Class<? extends ThreadFactoryProvider> getThreadFactoryProvider();
-  
-  //Class<? extends ContextAnalyzer> getContextAnalyzer();
+  Collection<EhcacheExecutorPolicy> getExecutorPolicies();
 }

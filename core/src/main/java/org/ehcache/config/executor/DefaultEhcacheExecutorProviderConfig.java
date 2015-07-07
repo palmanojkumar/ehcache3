@@ -16,8 +16,11 @@
 
 package org.ehcache.config.executor;
 
+import java.util.Collection;
+
+import org.ehcache.internal.executor.EhcacheExecutorPolicy;
 import org.ehcache.internal.executor.EhcacheExecutorProvider;
-import org.ehcache.internal.executor.ThreadFactoryProvider;
+
 
 /**
  * @author palmanojkumar
@@ -25,41 +28,16 @@ import org.ehcache.internal.executor.ThreadFactoryProvider;
  */
 public final class DefaultEhcacheExecutorProviderConfig implements EhcacheExecutorProviderConfig {
 
-  private ThreadPoolConfig sharedCachedThreadPoolConfig;
-  private int sharedScheduledThreadPoolCoreSize;
-  private Class<? extends ThreadFactoryProvider> threadFactoryProvider;
-  
   @Override
   public Class<EhcacheExecutorProvider> getServiceType() {
-
-    return EhcacheExecutorProvider.class;
+    
+    return null;
   }
 
   @Override
-  public ThreadPoolConfig getSharedCachedThreadPoolConfig() {
-    return sharedCachedThreadPoolConfig;
+  public Collection<EhcacheExecutorPolicy> getExecutorPolicies() {
+
+    return null;
   }
 
-  @Override
-  public int getSharedScheduledThreadPoolCoreSize() {
-    return sharedScheduledThreadPoolCoreSize;
-  }
-
-
-  @Override
-  public Class<? extends ThreadFactoryProvider> getThreadFactoryProvider() {
-    return threadFactoryProvider;
-  }
-
-  public void setSharedCachedThreadPoolConfig(ThreadPoolConfig sharedCachedThreadPoolConfig) {
-    this.sharedCachedThreadPoolConfig = sharedCachedThreadPoolConfig;
-  }
-
-  public void setSharedScheduledThreadPoolCoreSize(int sharedScheduledThreadPoolCoreSize) {
-    this.sharedScheduledThreadPoolCoreSize = sharedScheduledThreadPoolCoreSize;
-  }
-
-  public void setThreadFactoryProvider(Class<? extends ThreadFactoryProvider> threadFactoryProvider) {
-    this.threadFactoryProvider = threadFactoryProvider;
-  }
 }

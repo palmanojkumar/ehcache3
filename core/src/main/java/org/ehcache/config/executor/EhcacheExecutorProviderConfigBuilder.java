@@ -15,62 +15,31 @@
  */
 package org.ehcache.config.executor;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.ehcache.config.Builder;
-import org.ehcache.internal.executor.ThreadFactoryProvider;
+import org.ehcache.internal.executor.EhcacheExecutorPolicy;
 
 public class EhcacheExecutorProviderConfigBuilder implements Builder<EhcacheExecutorProviderConfig> {
 
-  private ThreadPoolConfig sharedCachedThreadPoolConfig;
-  private int sharedScheduledThreadPoolCoreSize;
-  private Class<? extends ThreadFactoryProvider> tfProvider;
 
+  private Collection<EhcacheExecutorPolicy> policies = new ArrayList<EhcacheExecutorPolicy>();
   
   private EhcacheExecutorProviderConfigBuilder() {
   }
   
   private EhcacheExecutorProviderConfigBuilder(EhcacheExecutorProviderConfigBuilder other) {
-    this.sharedCachedThreadPoolConfig = other.sharedCachedThreadPoolConfig;
-    this.sharedScheduledThreadPoolCoreSize = other.sharedScheduledThreadPoolCoreSize;
-    this.tfProvider = other.tfProvider;
-//    this.clazz = other.clazz;
   }
   
-  public static EhcacheExecutorProviderConfigBuilder newEhcacheExecutorProviderconfigBuilder() {
-    return new EhcacheExecutorProviderConfigBuilder();
+  public EhcacheExecutorProviderConfigBuilder add(EhcacheExecutorPolicy policy) {
+    return null;
   }
-  
-  public EhcacheExecutorProviderConfigBuilder globalSharedCachedThreadPoolConfig(ThreadPoolConfig poolConfig) {
-    EhcacheExecutorProviderConfigBuilder newBuilder = new EhcacheExecutorProviderConfigBuilder(this);
-    newBuilder.sharedCachedThreadPoolConfig = poolConfig;
-    return newBuilder;
-  }
-  
-  public EhcacheExecutorProviderConfigBuilder globalSharedScheduledThreadPoolCoreSize(int coreSize) {
-    EhcacheExecutorProviderConfigBuilder newBuilder = new EhcacheExecutorProviderConfigBuilder(this);
-    newBuilder.sharedScheduledThreadPoolCoreSize = coreSize;
-    return newBuilder;
-  }
-
- /* public EhcacheExecutorProviderConfigBuilder contextAnalyzer(Class<? extends ContextAnalyzer> clazz) {
-    EhcacheExecutorProviderConfigBuilder newBuilder = new EhcacheExecutorProviderConfigBuilder(this);
-    newBuilder.clazz = clazz;
-    return newBuilder;
-  }*/
-  
-  public EhcacheExecutorProviderConfigBuilder threadFactoryProvider(Class<? extends ThreadFactoryProvider> tfProvider) {
-    EhcacheExecutorProviderConfigBuilder newBuilder = new EhcacheExecutorProviderConfigBuilder(this);
-    newBuilder.tfProvider = tfProvider;
-    return newBuilder;
-  } 
   
   
   @Override
   public EhcacheExecutorProviderConfig build() {
-    DefaultEhcacheExecutorProviderConfig executorConfig = new DefaultEhcacheExecutorProviderConfig();
-    executorConfig.setSharedCachedThreadPoolConfig(sharedCachedThreadPoolConfig);
-    executorConfig.setSharedScheduledThreadPoolCoreSize(sharedScheduledThreadPoolCoreSize);
-    executorConfig.setThreadFactoryProvider(tfProvider);
-    return executorConfig;
+    return null;
   }
 
 }

@@ -30,11 +30,11 @@ public interface EhcacheExecutorProvider extends Service {
   /**
    * Returns {@link ExecutorService} of type {@link ExecutorServiceType}
    * 
-   * @param eType
-   * @param tType
+   * @param excutorServiceType
+   * @param taskType
    * @return {@link ExecutorService} to execute task
    */
-  ExecutorService getExecutorService(ExecutorServiceType eType,  TaskType tType);
+  ExecutorService getExecutorService(ExecutorServiceType excutorServiceType,  TaskType taskType);
   
   
   /**Returns {@link ExecutorService} of specified {@link PoolConfig} config
@@ -47,8 +47,8 @@ public interface EhcacheExecutorProvider extends Service {
   /**
    * Returns {@link ScheduledExecutorService} to schedule task of type {@link TaskType}
    * 
-   * @param tType
+   * @param taskType
    * @return
    */
-  ScheduledExecutorService getScheduledExecutorService(TaskType tType);  
+  ScheduledExecutorService getScheduledExecutorService(TaskType taskType);  
 }
